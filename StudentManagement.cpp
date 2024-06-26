@@ -94,7 +94,7 @@ void addNewStudent(vector<Student> &students)
     std::cout << "\t\tCongratulations! Student has been added successfully...\n";
 }
 
-//function for showing student list
+// function for showing student list
 void showStudentList(vector<Student> &students)
 {
     if (students.empty())
@@ -104,12 +104,12 @@ void showStudentList(vector<Student> &students)
     }
     std::cout << "\t\tRoll No\t\t" << "Name\t\t" << "Age\t" << "Sex\n";
 
-    for (Student student : students)
+    for (Student &student : students)
     {
         std::cout << "\t\t" << student.getRollno() << "\t\t" << student.getname() << "\t\t" << student.getage() << "\t" << student.getsex() << "\n";
     }
 }
-//function for searching for a student
+// function for searching for a student
 void searchStudent(vector<Student> &students)
 {
     if (students.empty())
@@ -118,12 +118,12 @@ void searchStudent(vector<Student> &students)
         return;
     }
     int rollno;
-    std::cout << "\t\tEnter student's roll number to be searched : " ;
+    std::cout << "\t\tEnter student's roll number to be searched : ";
     std::cin >> rollno;
 
     std::cout << "\t\tRoll No\t\t" << "Name\t\t" << "Age\t" << "Sex\n";
 
-    for (Student student : students)
+    for (Student &student : students)
     {
         if (student.getRollno() == rollno)
         {
@@ -134,7 +134,7 @@ void searchStudent(vector<Student> &students)
     std::cout << "\t\tNo student with mentioned roll number found!!!\n";
 }
 
-//function for updating a student's information
+// function for updating a student's information
 void updateStudentInfo(vector<Student> &students)
 {
     if (students.empty())
@@ -143,54 +143,57 @@ void updateStudentInfo(vector<Student> &students)
         return;
     }
     int rollno;
-    std::cout << "\t\tEnter student's roll number whose information is to be updated : " ;
+    std::cout << "\t\tEnter student's roll number whose information is to be updated : ";
     std::cin >> rollno;
 
     std::cout << "\t\tRoll No\t\t" << "Name\t\t" << "Age\t" << "Sex\n";
 
-    for (Student student : students)
+    for (Student &student : students)
     {
         if (student.getRollno() == rollno)
         {
             std::cout << "\t\tStudent's Current Info : \n";
             std::cout << "\t\t" << student.getRollno() << "\t\t" << student.getname() << "\t\t" << student.getage() << "\t" << student.getsex() << "\n";
-            int operation;
-            std::cin >> operation;
+
             std::cout << "\t\tInput operation type for performing the updation : \n";
             std::cout << "\t\tType 1 : Update Roll Number\n";
             std::cout << "\t\tType 2 : Update name\n";
             std::cout << "\t\tType 3 : Update age\n";
             std::cout << "\t\tType 4 : Update sex\n";
             string nwname;
+            int operation;
+            std::cout << "\t\tInput : ";
+            std::cin >> operation;
             switch (operation)
             {
             case 1:
                 int newRollno;
-                std::cout << "\t\tEnter new roll no. :";
+                std::cout << "\t\tEnter new roll no. : ";
                 std::cin >> newRollno;
                 student.setRollno(newRollno);
                 break;
             case 2:
                 // moved nwname to outside the switch statement due to error
                 // "transfer of control bypasses initialization"
-                std::cout << "\t\tEnter new name :";
+                std::cout << "\t\tEnter new name : ";
                 std::cin >> nwname;
                 student.setname(nwname);
                 break;
             case 3:
                 int newage;
-                std::cout << "\t\tEnter new age :";
+                std::cout << "\t\tEnter new age : ";
                 std::cin >> newage;
                 student.setage(newage);
                 break;
             case 4:
                 char newsex;
-                std::cout << "\t\tEnter new sex :";
+                std::cout << "\t\tEnter new sex : ";
                 std::cin >> newsex;
                 student.setsex(newsex);
                 break;
             default:
                 std::cout << "\t\tInvalid Operation!!!\n";
+                break;
             }
             std::cout << "\t\tStudent details were updated successfully!!!\n";
             return;
@@ -199,7 +202,7 @@ void updateStudentInfo(vector<Student> &students)
     std::cout << "\t\tNo student with mentioned roll number found!!!\n";
 }
 
-//function for deleting a student's information
+// function for deleting a student's information
 void deleteStudent(vector<Student> &students)
 {
     if (students.empty())
@@ -208,10 +211,8 @@ void deleteStudent(vector<Student> &students)
         return;
     }
     int rollno;
-    std::cout << "\t\tEnter student's roll number to be searched : " ;
+    std::cout << "\t\tEnter student's roll number to be searched : ";
     std::cin >> rollno;
-
-    
 
     for (unsigned int i = 0; i < students.size(); ++i)
     {
